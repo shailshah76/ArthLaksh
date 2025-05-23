@@ -17,8 +17,9 @@ const GoalsView = ({ goals, onShowWizard }) => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {goals.map((goal) => {
-          const progress = (goal.currentAmount / goal.targetAmount) * 100;
-          const daysLeft = Math.ceil((new Date(goal.targetDate) - new Date()) / (1000 * 60 * 60 * 24));
+          const progress = goal.currentAmount && goal.targetAmount ? (goal.currentAmount / goal.targetAmount) * 100 : 0;
+          const daysLeft = goal.targetDate ? Math.ceil((new Date(goal.targetDate) - new Date()) / (1000 * 60 * 60 * 24)) : 'N/A';
+
           
           return (
             <div key={goal.id} className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
@@ -46,8 +47,8 @@ const GoalsView = ({ goals, onShowWizard }) => {
                     ></div>
                   </div>
                   <div className="flex justify-between text-sm text-gray-600 mt-1">
-                    <span>${goal.currentAmount.toLocaleString()}</span>
-                    <span>${goal.targetAmount.toLocaleString()}</span>
+                    <span>${goal.currentAmount?.toLocaleString() ?? '0'}</span>
+                    <span>${goal.targetAmount?.toLocaleString() ?? '0'}</span>
                   </div>
                 </div>
                 

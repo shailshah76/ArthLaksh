@@ -29,6 +29,7 @@ export const api = {
   },
 
   async createGoal(goalData, token) {
+    console.log('Creating goal with data:', goalData);
     const response = await fetch(`${API_BASE_URL}/goals`, {
       method: 'POST',
       headers: {

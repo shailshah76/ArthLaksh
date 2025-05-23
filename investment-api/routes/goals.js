@@ -98,6 +98,7 @@ router.post('/', authenticateToken, [
   body('description').optional().trim().isLength({ max: 1000 })
 ], async (req, res) => {
   try {
+    console.log('Creating goal with data:', req.body);  
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
