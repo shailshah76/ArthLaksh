@@ -15,14 +15,7 @@ const models = {
   sequelize
 };
 
-// Fix Portfolio-StockData association
-Portfolio.belongsTo(StockData, {
-  foreignKey: 'symbol',
-  targetKey: 'symbol',
-  as: 'stockData'
-});
-
-// Set up other associations
+// Set up associations
 Object.keys(models).forEach(modelName => {
   if (models[modelName].associate) {
     models[modelName].associate(models);
